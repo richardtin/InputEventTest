@@ -15,7 +15,7 @@ class InputEventLogger(path: String) {
     private fun initializeLogFile() {
         if (!file.exists()) file.createNewFile()
         fileOutputStream = FileOutputStream(file, true)
-        log("pathId,x,y,touchMajor,touchMinor,touchSize,eventTime,downTime")
+        log("x,y,touchMajor,touchMinor,size,pressure,eventTime,downTime,toolType")
     }
 
     fun log(message: String) {

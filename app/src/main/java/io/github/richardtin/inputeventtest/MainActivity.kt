@@ -1,6 +1,5 @@
 package io.github.richardtin.inputeventtest
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -11,26 +10,20 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     lateinit var mainBinding: ActivityMainBinding
-    var logger: InputEventLogger? = null
     var logPath: String? = null
 
-    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        mainBinding.interceptView.setOnTouchListener { _, event ->
-            if (event != null) {
-                logger?.log("${event.hashCode()},${event.x},${event.y},${event.touchMajor},${event.touchMinor},${event.size},${event.eventTime},${event.downTime}")
-            }
-            false
-        }
-
         mainBinding.start.setOnClickListener {
-            logPath = "${getSavedDir()}/${getCurrentDateString()}_${getPenGroupCheckedItem()}.log"
-            logger = InputEventLogger(logPath!!)
+            logPath = "${getSavedDir()}/${getCurrentDateString()}_${getPenGroupCheckedItem()}.csv"
+            mainBinding.drawingView.logger = InputEventLogger(logPath!!)
         }
-        mainBinding.stop.setOnClickListener { logger = null }
+        mainBinding.stop.setOnClickListener {
+            mainBinding.drawingView.clear()
+            mainBinding.drawingView.logger = null
+        }
         mainBinding.save.setOnClickListener {
             // TODO: Save log file to File Manager
         }
