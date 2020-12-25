@@ -1,9 +1,12 @@
 package io.github.richardtin.inputeventtest
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import io.github.richardtin.inputeventtest.databinding.ActivityMainBinding
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,7 +28,16 @@ class MainActivity : AppCompatActivity() {
             mainBinding.drawingView.logger = null
         }
         mainBinding.save.setOnClickListener {
-            // TODO: Save log file to File Manager
+            logPath?.let {
+                val fileUri =
+                    FileProvider.getUriForFile(this, "$packageName.fileprovider", File(it))
+                val shareIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_STREAM, fileUri)
+                    type = "text/plain"
+                }
+                startActivity(Intent.createChooser(shareIntent, null))
+            }
         }
     }
 
