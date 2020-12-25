@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">InputEventTest</string>
+    <string name="pen_type_header">Pen type</string>
+    <string name="pen_type_option_thin">Thin</string>
+    <string name="pen_type_option_thick">Thick</string>
 </resources>
