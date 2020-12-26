@@ -49,6 +49,9 @@ dependencies {
     // DrawingView-Android
     implementation 'com.github.mukeshsolanki:DrawingView-Android:1.0.13'
 
+    // debugImplementation because LeakCanary should only run in debug builds.
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.6'
+
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

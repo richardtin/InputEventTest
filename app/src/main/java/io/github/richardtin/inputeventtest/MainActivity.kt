@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        mainBinding.loggerStart.setOnClickListener {
-            mainBinding.run {
+        mainBinding.run {
+            loggerStart.setOnClickListener {
                 logfileName.text = generateLogfileName()
                 logPath = "${getSavedDir()}/${logfileName.text}"
                 drawingView.logger = InputEventLogger(logPath!!)
@@ -30,9 +30,7 @@ class MainActivity : AppCompatActivity() {
                 penTypeOptionThick.isEnabled = false
                 save.isEnabled = false
             }
-        }
-        mainBinding.loggerStop.setOnClickListener {
-            mainBinding.run {
+            loggerStop.setOnClickListener {
                 drawingView.clear()
                 drawingView.logger = null
                 appHint.visibility = View.VISIBLE

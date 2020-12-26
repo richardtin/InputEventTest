@@ -18,7 +18,7 @@ class InputEventLogger(path: String) {
         log("x,y,touchMajor,touchMinor,size,pressure,eventTime,downTime,toolType")
     }
 
-    fun log(message: String) {
-        fileOutputStream?.write("$message\n".toByteArray())
+    fun log(record: String) {
+        fileOutputStream?.write("$record\n".toByteArray())
     }
 }
