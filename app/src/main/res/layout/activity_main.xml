@@ -34,7 +34,6 @@
             android:layout_height="wrap_content"
             app:checkedButton="@id/pen_type_option_thin"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/logger_toggle_group"
             app:layout_constraintStart_toStartOf="parent"
             app:selectionRequired="true"
             app:singleSelection="true"
@@ -99,8 +98,16 @@
             android:textAllCaps="false"
             app:icon="@drawable/ic_save"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/logger_toggle_group" />
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/logfile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintBaseline_toBaselineOf="@id/save"
+            app:layout_constraintEnd_toStartOf="@id/save"
+            tools:text="20201225_120000_thin.csv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -21,20 +21,25 @@ class MainActivity : AppCompatActivity() {
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         mainBinding.loggerStart.setOnClickListener {
-            logPath = "${getSavedDir()}/${getCurrentDateString()}_${getPenGroupCheckedItem()}.csv"
-            mainBinding.drawingView.logger = InputEventLogger(logPath!!)
-            mainBinding.appHint.visibility = View.GONE
-            mainBinding.penTypeOptionThin.isEnabled = false
-            mainBinding.penTypeOptionThick.isEnabled = false
-            mainBinding.save.isEnabled = false
+            mainBinding.run {
+                logfileName.text = generateLogfileName()
+                logPath = "${getSavedDir()}/${logfileName.text}"
+                drawingView.logger = InputEventLogger(logPath!!)
+                appHint.visibility = View.GONE
+                penTypeOptionThin.isEnabled = false
+                penTypeOptionThick.isEnabled = false
+                save.isEnabled = false
+            }
         }
         mainBinding.loggerStop.setOnClickListener {
-            mainBinding.drawingView.clear()
-            mainBinding.drawingView.logger = null
-            mainBinding.appHint.visibility = View.VISIBLE
-            mainBinding.penTypeOptionThin.isEnabled = true
-            mainBinding.penTypeOptionThick.isEnabled = true
-            mainBinding.save.isEnabled = true
+            mainBinding.run {
+                drawingView.clear()
+                drawingView.logger = null
+                appHint.visibility = View.VISIBLE
+                penTypeOptionThin.isEnabled = true
+                penTypeOptionThick.isEnabled = true
+                save.isEnabled = true
+            }
         }
         mainBinding.save.setOnClickListener {
             logPath?.let {
@@ -69,5 +74,9 @@ class MainActivity : AppCompatActivity() {
     private fun getCurrentDateString(): String {
         val dateFormatter = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
         return dateFormatter.format(getCurrentDate())
+    }
+
+    private fun generateLogfileName(): String {
+        return "${getCurrentDateString()}_${getPenGroupCheckedItem()}.csv"
     }
 }
