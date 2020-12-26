@@ -2,6 +2,7 @@ package io.github.richardtin.inputeventtest
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
@@ -19,13 +20,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        mainBinding.start.setOnClickListener {
+        mainBinding.loggerStart.setOnClickListener {
             logPath = "${getSavedDir()}/${getCurrentDateString()}_${getPenGroupCheckedItem()}.csv"
             mainBinding.drawingView.logger = InputEventLogger(logPath!!)
+            mainBinding.appHint.visibility = View.GONE
+            mainBinding.penTypeOptionThin.isEnabled = false
+            mainBinding.penTypeOptionThick.isEnabled = false
+            mainBinding.save.isEnabled = false
         }
-        mainBinding.stop.setOnClickListener {
+        mainBinding.loggerStop.setOnClickListener {
             mainBinding.drawingView.clear()
             mainBinding.drawingView.logger = null
+            mainBinding.appHint.visibility = View.VISIBLE
+            mainBinding.penTypeOptionThin.isEnabled = true
+            mainBinding.penTypeOptionThick.isEnabled = true
+            mainBinding.save.isEnabled = true
         }
         mainBinding.save.setOnClickListener {
             logPath?.let {
@@ -42,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getPenGroupCheckedItem(): String {
-        return when (mainBinding.penTypeGroup.checkedRadioButtonId) {
+        return when (mainBinding.penTypeToggleGroup.checkedButtonId) {
             R.id.pen_type_option_thin -> "thin"
             R.id.pen_type_option_thick -> "thick"
             else -> "none"

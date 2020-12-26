@@ -17,57 +17,90 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/app_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_hint"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/pen_type_toggle_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:checkedButton="@id/pen_type_option_thin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/logger_toggle_group"
+            app:layout_constraintStart_toStartOf="parent"
+            app:selectionRequired="true"
+            app:singleSelection="true"
+            tools:checkedButton="@id/pen_type_option_thin"
+            tools:selectionRequired="true"
+            tools:singleSelection="true">
+
+            <Button
+                android:id="@+id/pen_type_option_thin"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pen_type_option_thin"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/pen_type_option_thick"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pen_type_option_thick"
+                android:textAllCaps="false" />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/logger_toggle_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:checkedButton="@id/logger_stop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:selectionRequired="true"
+            app:singleSelection="true"
+            tools:checkedButton="@id/logger_stop"
+            tools:selectionRequired="true"
+            tools:singleSelection="true">
+
+            <Button
+                android:id="@+id/logger_stop"
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/ic_stop_circle" />
+
+            <Button
+                android:id="@+id/logger_start"
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/ic_play_circle" />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <Button
             android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/stop"
-            app:srcCompat="@drawable/ic_save" />
-
-        <ImageButton
-            android:id="@+id/stop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/start"
-            app:srcCompat="@drawable/ic_stop_circle" />
-
-        <ImageButton
-            android:id="@+id/start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            app:icon="@drawable/ic_save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_play_circle" />
-
-        <RadioGroup
-            android:id="@+id/pen_type_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:checkedButton="@id/pen_type_option_thin"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/pen_type_group_header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/pen_type_header" />
-
-            <RadioButton
-                android:id="@+id/pen_type_option_thin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/pen_type_option_thin" />
-
-            <RadioButton
-                android:id="@+id/pen_type_option_thick"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/pen_type_option_thick" />
-        </RadioGroup>
+            app:layout_constraintStart_toEndOf="@id/logger_toggle_group" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
