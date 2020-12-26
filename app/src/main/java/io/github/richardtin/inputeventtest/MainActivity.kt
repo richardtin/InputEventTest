@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
             }
             loggerStop.setOnClickListener {
                 drawingView.clear()
+                drawingView.logger?.close()
                 drawingView.logger = null
                 appHint.visibility = View.VISIBLE
                 penTypeOptionThin.isEnabled = true
@@ -51,6 +52,20 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent.createChooser(shareIntent, null))
             }
         }
+    }
+
+    override fun onDestroy() {
+        deleteAllInFolder(filesDir)
+        super.onDestroy()
+    }
+
+    private fun deleteAllInFolder(fileOrDirectory: File) {
+        if (fileOrDirectory.isDirectory) {
+            fileOrDirectory.listFiles()?.forEach { child ->
+                deleteAllInFolder(child)
+            }
+        }
+        fileOrDirectory.delete()
     }
 
     private fun getPenGroupCheckedItem(): String {

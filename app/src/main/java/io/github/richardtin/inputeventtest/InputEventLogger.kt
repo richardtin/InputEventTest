@@ -21,4 +21,8 @@ class InputEventLogger(path: String) {
     fun log(record: String) {
         fileOutputStream?.write("$record\n".toByteArray())
     }
+
+    fun close() {
+        fileOutputStream?.close()
+    }
 }
