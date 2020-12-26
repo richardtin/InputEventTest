@@ -1,6 +1,7 @@
 package io.github.richardtin.inputeventtest
 
 import android.content.Context
+import android.graphics.Canvas
 import android.util.AttributeSet
 import android.view.MotionEvent
 import com.mukesh.DrawingView
@@ -13,10 +14,17 @@ class LogDrawingView @JvmOverloads constructor(
 
     var logger: InputEventLogger? = null
 
+    override fun onDraw(canvas: Canvas?) {
+        logger?.let { super.onDraw(canvas) }
+    }
+
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        event?.let {
-            logger?.log("${it.x},${it.y},${it.touchMajor},${it.touchMinor},${it.size},${it.pressure},${it.eventTime},${it.downTime},${it.getToolType(0)}")
+        if (logger != null) {
+            event?.let {
+                logger?.log("${it.x},${it.y},${it.touchMajor},${it.touchMinor},${it.size},${it.pressure},${it.eventTime},${it.downTime},${it.getToolType(0)}")
+                return super.onTouchEvent(event)
+            }
         }
-        return super.onTouchEvent(event)
+        return true
     }
 }
