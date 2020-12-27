@@ -60,29 +60,15 @@
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/logger_toggle_group"
+            android:id="@+id/recorder_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:checkedButton="@id/logger_stop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:selectionRequired="true"
-            app:singleSelection="true"
-            tools:checkedButton="@id/logger_stop"
-            tools:selectionRequired="true"
-            tools:singleSelection="true">
+            app:layout_constraintStart_toStartOf="parent">
 
-            <Button
-                android:id="@+id/logger_stop"
-                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:icon="@drawable/ic_stop_circle"
-                app:iconSize="48dp" />
-
-            <Button
-                android:id="@+id/logger_start"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/recorder"
                 style="@style/Widget.App.Button.OutlinedButton.IconOnly"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
