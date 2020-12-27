@@ -1,4 +1,4 @@
-package io.github.richardtin.inputeventtest
+package io.github.richardtin.penanalyzer
 
 import org.junit.Test
 

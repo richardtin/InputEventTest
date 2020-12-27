@@ -1,4 +1,4 @@
-package io.github.richardtin.inputeventtest
+package io.github.richardtin.penanalyzer
 
 import android.content.Context
 import android.graphics.Canvas

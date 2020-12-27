@@ -1,4 +1,4 @@
-package io.github.richardtin.inputeventtest
+package io.github.richardtin.penanalyzer
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
-import io.github.richardtin.inputeventtest.databinding.ActivityMainBinding
+import io.github.richardtin.penanalyzer.databinding.ActivityMainBinding
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*

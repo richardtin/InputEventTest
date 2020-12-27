@@ -1,4 +1,4 @@
-package io.github.richardtin.inputeventtest
+package io.github.richardtin.penanalyzer
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("io.github.richardtin.inputeventtest", appContext.packageName)
+        assertEquals("io.github.richardtin.penanalyzer", appContext.packageName)
     }
 }
