@@ -3,6 +3,7 @@ package io.github.richardtin.penanalyzer
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -17,6 +18,18 @@ class MainActivity : AppCompatActivity() {
     lateinit var mainBinding: ActivityMainBinding
     var logName: String? = null
     var logPath: String? = null
+    private val logSaver =
+        registerForActivityResult(ActivityResultContracts.CreateDocument()) { uri ->
+            if (uri != null && logPath != null) {
+                File(logPath!!).inputStream().use { input ->
+                    contentResolver.openOutputStream(uri).use { output ->
+                        output?.let { outputStream ->
+                            input.copyTo(outputStream, DEFAULT_BUFFER_SIZE)
+                        }
+                    }
+                }
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,11 +56,11 @@ class MainActivity : AppCompatActivity() {
                     drawingView.clear()
                     appHint.visibility = View.VISIBLE
                     recorder.icon = ContextCompat.getDrawable(this@MainActivity, R.drawable.ic_play_circle)
-                    sendLog()
+                    saveLog()
                 }
             }
             save.setOnClickListener {
-                sendLog()
+                saveLog()
             }
         }
     }
@@ -116,6 +129,10 @@ class MainActivity : AppCompatActivity() {
             }
             startActivity(Intent.createChooser(shareIntent, null))
         }
+    }
+
+    private fun saveLog() {
+        logSaver.launch(logName)
     }
 
 }
