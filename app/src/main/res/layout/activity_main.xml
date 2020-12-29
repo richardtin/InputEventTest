@@ -78,6 +78,18 @@
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <Button
+            android:id="@+id/share"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/share"
+            android:textAllCaps="false"
+            app:icon="@drawable/ic_share"
+            app:layout_constraintBottom_toTopOf="@id/save"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
             android:id="@+id/save"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
