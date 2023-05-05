@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                     appHint.visibility = View.VISIBLE
                     recorder.icon =
                         ContextCompat.getDrawable(this@MainActivity, R.drawable.ic_play_circle)
-                    saveLog()
+                    sendLog()
                 }
             }
             save.setOnClickListener {
